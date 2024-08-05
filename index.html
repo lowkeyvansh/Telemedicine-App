@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicine App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Telemedicine App</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="{{ url_for('add_patient') }}">Add Patient</a>
+            <a href="{{ url_for('add_doctor') }}">Add Doctor</a>
+            <a href="{{ url_for('book_appointment') }}">Book Appointment</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Patients</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Medical History</th>
+            </tr>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.medical_history }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Doctors</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Specialty</th>
+            </tr>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.id }}</td>
+                <td>{{ doctor.name }}</td>
+                <td>{{ doctor.specialty }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Appointments</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Patient ID</th>
+                <th>Doctor ID</th>
+                <th>Appointment Date</th>
+                <th>Notes</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.id }}</td>
+                <td>{{ appointment.patient_id }}</td>
+                <td>{{ appointment.doctor_id }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.notes }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>
